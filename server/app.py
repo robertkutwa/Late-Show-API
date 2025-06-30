@@ -4,7 +4,6 @@ from server.config import db, migrate, jwt, Config
 from dotenv import load_dotenv
 load_dotenv()
 
-
 from server.models import *  # make sure models are imported
 
 # Import blueprints
