@@ -31,6 +31,11 @@ def create_app():
     app.register_blueprint(appearance_bp)
     app.register_blueprint(auth_bp)
 
+    # Add this route here
+    @app.route("/")
+    def index():
+        return "Late Show API is running!"
+
     @app.cli.command("db-upgrade")
     @with_appcontext
     def db_upgrade():
