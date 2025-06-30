@@ -11,6 +11,9 @@ from server.controllers.guest_controller import guest_bp
 from server.controllers.episode_controller import episode_bp
 from server.controllers.appearance_controller import appearance_bp
 from server.controllers.auth_controller import auth_bp
+from flask_migrate import Migrate, upgrade
+from flask.cli import with_appcontext
+import click
 
 def create_app():
     app = Flask(__name__)
@@ -27,6 +30,12 @@ def create_app():
     app.register_blueprint(episode_bp)
     app.register_blueprint(appearance_bp)
     app.register_blueprint(auth_bp)
+
+    @app.cli.command("db-upgrade")
+    @with_appcontext
+    def db_upgrade():
+        """Run database migrations."""
+        upgrade()
 
     return app
 
